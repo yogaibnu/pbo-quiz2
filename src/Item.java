@@ -9,5 +9,10 @@
  * @author YOGA
  */
 public class Item {
+    //atribut dengan variabel nama, harga, jumlah
+    private String nama;
+    private float harga;
+    private int jumlah;
+    
     
 }
