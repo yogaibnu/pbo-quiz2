@@ -340,10 +340,12 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCnclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnclActionPerformed
-        
+        newTransaksi();
+        this.decId();
     }//GEN-LAST:event_btnCnclActionPerformed
 
     private void btnRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvActionPerformed
+        //untuk mengecek apakah ada baris yang dipilih
         if(tblListItems.getSelectedRow()<0) {
             String str = "Pilih item yang ingin dihapus !";
             JOptionPane.showMessageDialog(this, str, "Information", JOptionPane.INFORMATION_MESSAGE);
