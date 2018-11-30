@@ -14,5 +14,15 @@ public class Item {
     private float harga;
     private int jumlah;
     
+    //konstruktor
+    public Item(){
+        
+    }
+    
+    public Item(String nama, float harga, int jumlah) {
+        this.nama = nama;
+        this.harga = harga;
+        this.jumlah = jumlah;
+    }
     
 }
