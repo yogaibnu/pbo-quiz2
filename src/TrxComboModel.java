@@ -21,4 +21,23 @@ public class TrxComboModel {
         this.items.put("Kopi", new Float(10000));
     }
     
+    public ArrayList<String> getNama() {
+        ArrayList<String> str = new ArrayList<>();
+        for(String item : this.items.keySet()) {
+            str.add(item);
+        }
+        return str;
+    }
+    
+    public ArrayList<Float> getHarga() {
+        ArrayList<Float> flt = new ArrayList<>();
+        for(float item : this.items.values()) {
+            flt.add(item);
+        }
+        return flt;
+    }
+    
+    public void addItem(String nama, float harga) {
+        this.items.put(nama, harga);
+    }
 }
