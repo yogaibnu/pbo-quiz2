@@ -175,14 +175,7 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
-        tblListItems.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nama", "Harga", "Jumlah"
-            }
-        ));
+        tblListItems.setModel(this.tbModel);
         jScrollPane1.setViewportView(tblListItems);
 
         btnSave.setText("Save");
