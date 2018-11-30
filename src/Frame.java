@@ -139,7 +139,8 @@ public class Frame extends javax.swing.JFrame {
 
         jLabel2.setText("Items");
 
-        comboItems.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboItems.setModel(this.cbModel);
+        comboItems.setEnabled(false);
         comboItems.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboItemsActionPerformed(evt);
@@ -192,6 +193,11 @@ public class Frame extends javax.swing.JFrame {
         });
 
         btnCncl.setText("Cancel");
+        btnCncl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCnclActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -296,6 +302,10 @@ public class Frame extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnCnclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnclActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCnclActionPerformed
 
     /**
      * @param args the command line arguments
