@@ -35,6 +35,10 @@ public class Frame extends javax.swing.JFrame {
         initComponents();
         codeText.setEnabled(false);
         txtJml.setEnabled(false);
+        btnAdd.setEnabled(false);
+        btnRmv.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnCncl.setEnabled(false);
     }
     
     private Object[] addItem(String nama, int jumlah) {
@@ -96,6 +100,20 @@ public class Frame extends javax.swing.JFrame {
         }
     }
     
+    //untuk Transaksi baru setelah transaksi sebelumnya sukses
+    private void newTransaksi(){
+        this.txtJml.setText("");
+        this.codeText.setText("");
+        this.btnNew.setEnabled(true);
+        this.btnSave.setEnabled(false);
+        this.btnCncl.setEnabled(false);
+        this.btnAdd.setEnabled(false);
+        this.btnRmv.setEnabled(false);
+        this.txtJml.setEnabled(false);
+        this.comboItems.setEnabled(false);
+        this.tbModel.setRowCount(0);
+        this.cart.clear();
+    }
     
     //mengatur fungsi code untuk mendapatkan tanggal saat ini dan id
     private String setCode() {
@@ -315,7 +333,7 @@ public class Frame extends javax.swing.JFrame {
             //append keluaran transaksi
             str.append(Trx.prtDetail());
             JOptionPane.showMessageDialog(this, str, "Detail Transaksi", JOptionPane.INFORMATION_MESSAGE);
-            //newTrx();
+            newTransaksi();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
