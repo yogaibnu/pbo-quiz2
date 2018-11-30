@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.*;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -94,6 +95,8 @@ public class Frame extends javax.swing.JFrame {
             this.btnRmv.setEnabled(true);
         }
     }
+    
+    
     //mengatur fungsi code untuk mendapatkan tanggal saat ini dan id
     private String setCode() {
         this.incId();
@@ -293,11 +296,25 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        try {
+            for(int i = 0; i <tbModel.getRowCount(); i++) {
+                String nama = tbModel.getValueAt(i, 0).toString();
+                float harga = new Float(tbModel.getValueAt(i, 1).toString());
+                int jumlah = new Integer(tbModel.getValueAt(i, 2).toString());
+                this.cart.add(new Item(nama, harga, jumlah));
+            }
+            Transaksi Trx = new Transaksi(this.code, this.cart);
+            StringBuilder str = new StringBuilder();
+            str.append(Trx.prtDetail());
+            JOptionPane.showMessageDialog(this, str, "Detail Transaksi", JOptionPane.INFORMATION_MESSAGE);
+            //newTrx();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCnclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnclActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCnclActionPerformed
 
     /**
