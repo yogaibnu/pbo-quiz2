@@ -16,7 +16,7 @@ public class TrxTableModel extends DefaultTableModel{
     private String[] columns; 
     
     //konstruktor
-    public TrxTableModel(String[] columns) {
+    public TrxTableModel() {
         this.columns = new String[] {
             "Nama", "Harga", "Jumlah"
         };

@@ -29,11 +29,71 @@ public class Frame extends javax.swing.JFrame {
         
         TrxTableModel tableModel = new TrxTableModel();
         //untuk set table kolom nama
+        this.tbModel = new DefaultTableModel(tableModel.getColumnName(), 0);
         
         initComponents();
         codeText.setEnabled(false);
+        txtJml.setEnabled(false);
     }
-     
+    
+    private Object[] addItem(String nama, int jumlah) {
+        float harga = 0;
+        TrxComboModel items = new TrxComboModel();
+        for(int i = 0; i < items.getNama().size(); i++) {
+            if(nama.equalsIgnoreCase(items.getNama().get(i))) {
+                harga = items.getHarga().get(i);
+            }
+        }
+        Object[] obj = {
+            nama, harga, jumlah
+        };
+        return obj;
+    }
+    
+    //update fungsi jumlah
+    private void updateJumlah(String nama, int add) {
+        ArrayList<String> item = new ArrayList<>();
+        for(int i = 0; i < tbModel.getRowCount(); i++) {
+            item.add(tbModel.getValueAt(i, 0).toString());
+        }
+        for(int i = 0; i < item.size(); i++) {
+            if(item.get(i).equals(nama)) {
+                int jumlah = new Integer (tbModel.getValueAt(i, 2).toString());
+                tbModel.setValueAt(jumlah, i, 2);
+            }
+        }
+    }
+    
+    //untuk mengecek item kembar yang telah dipilih
+    private boolean isDuplicate(String nama) {
+        boolean result = false;
+        ArrayList<String> item = new ArrayList<>();
+        for(int i = 0; i < tbModel.getRowCount(); i++) {
+            item.add(tbModel.getValueAt(i, 0).toString());
+        }
+        for(String i : item) {
+            if(i.equals(nama)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+    
+    //untuk mengecek jika tabel kosong
+    private boolean isEmpty() {
+        return this.tblListItems.getModel().getRowCount()<=0;
+    }
+    
+    //untuk mematikan tombol remove dan save jika tabel kosong
+    private void cartCheck() {
+        if(isEmpty()) {
+            this.btnSave.setEnabled(false);
+            this.btnRmv.setEnabled(false);
+        }else{
+            this.btnSave.setEnabled(true);
+            this.btnRmv.setEnabled(true);
+        }
+    }
     //mengatur fungsi code untuk mendapatkan tanggal saat ini dan id
     private String setCode() {
         this.incId();
@@ -125,6 +185,11 @@ public class Frame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblListItems);
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnCncl.setText("Cancel");
 
@@ -215,8 +280,22 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtJmlActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        //untuk mendapatkan selected item pada comboItems
+        String nama = this.comboItems.getSelectedItem().toString();
+        //untuk mendapatkan txtJml sebagai tipe data integer
+        int jumlah = new Integer(this.txtJml.getText());
+        //untuk mengecek jika ada item yang kembar
+        if(isDuplicate(nama)) {
+            updateJumlah(nama, jumlah);
+        }else{
+            tbModel.addRow(addItem(nama, jumlah));
+        }
+        this.cartCheck();
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
