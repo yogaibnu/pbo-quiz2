@@ -165,6 +165,11 @@ public class Frame extends javax.swing.JFrame {
         });
 
         btnRmv.setText("Remove");
+        btnRmv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRmvActionPerformed(evt);
+            }
+        });
 
         codeText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,8 +308,11 @@ public class Frame extends javax.swing.JFrame {
                 int jumlah = new Integer(tbModel.getValueAt(i, 2).toString());
                 this.cart.add(new Item(nama, harga, jumlah));
             }
+            //instansiasi class Transaksi
             Transaksi Trx = new Transaksi(this.code, this.cart);
+            //untuk mengatasi keluaran transaksi
             StringBuilder str = new StringBuilder();
+            //append keluaran transaksi
             str.append(Trx.prtDetail());
             JOptionPane.showMessageDialog(this, str, "Detail Transaksi", JOptionPane.INFORMATION_MESSAGE);
             //newTrx();
@@ -316,6 +324,19 @@ public class Frame extends javax.swing.JFrame {
     private void btnCnclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCnclActionPerformed
         
     }//GEN-LAST:event_btnCnclActionPerformed
+
+    private void btnRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvActionPerformed
+        if(tblListItems.getSelectedRow()<0) {
+            String str = "Pilih item yang ingin dihapus !";
+            JOptionPane.showMessageDialog(this, str, "Information", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            int count = tblListItems.getSelectedRows().length;
+            for(int i = 0; i < count; i++) {
+                tbModel.removeRow(tblListItems.getSelectedRow());
+            }
+        }
+        this.cartCheck();
+    }//GEN-LAST:event_btnRmvActionPerformed
 
     /**
      * @param args the command line arguments
