@@ -60,7 +60,7 @@ public class Frame extends javax.swing.JFrame {
         for(int i = 0; i < item.size(); i++) {
             if(item.get(i).equals(nama)) {
                 int jumlah = new Integer (tbModel.getValueAt(i, 2).toString());
-                tbModel.setValueAt(jumlah, i, 2);
+                tbModel.setValueAt(jumlah+add, i, 2);
             }
         }
     }
