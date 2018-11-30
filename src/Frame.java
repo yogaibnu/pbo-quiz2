@@ -23,6 +23,13 @@ public class Frame extends javax.swing.JFrame {
     private ArrayList<Item> cart = new ArrayList<>(); //variabel untuk menyimpan item transaksi
     
     public Frame() {
+        TrxComboModel comboModel = new TrxComboModel();
+        //untuk set combo items
+        this.cbModel = new DefaultComboBoxModel<>(comboModel.getNama().toArray());
+        
+        TrxTableModel tableModel = new TrxTableModel();
+        //untuk set table kolom nama
+        
         initComponents();
         codeText.setEnabled(false);
     }

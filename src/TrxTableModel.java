@@ -11,7 +11,7 @@ import javax.swing.table.*;
  *
  * @author YOGA
  */
-public class TrxTableModel {
+public class TrxTableModel extends DefaultTableModel{
     //atribut untuk meynimpan nama 
     private String[] columns; 
     
